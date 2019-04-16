@@ -1,0 +1,17 @@
+D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\obj\Debug\RegisterEmployeeFinger.csprojAssemblyReference.cache
+D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\obj\Debug\RegisterEmployeeFinger.FormRegister.resources
+D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\obj\Debug\RegisterEmployeeFinger.Properties.Resources.resources
+D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\obj\Debug\RegisterEmployeeFinger.csproj.GenerateResource.cache
+D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\obj\Debug\RegisterEmployeeFinger.csproj.CoreCompileInputs.cache
+D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\bin\Debug\RegisterEmployeeFinger.exe.config
+D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\bin\Debug\RegisterEmployeeFinger.exe
+D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\bin\Debug\RegisterEmployeeFinger.pdb
+D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\obj\Debug\RegisterEmployeeFinger.exe
+D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\obj\Debug\RegisterEmployeeFinger.pdb
+D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\bin\Debug\MySql.Data.dll
+D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\bin\Debug\Google.Protobuf.dll
+D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\bin\Debug\MySql.Data.xml
+D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\obj\Debug\RegisterEmployeeFinger.csproj.CopyComplete
+D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\bin\Debug\Newtonsoft.Json.dll
+D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\bin\Debug\Newtonsoft.Json.pdb
+D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\bin\Debug\Newtonsoft.Json.xml
