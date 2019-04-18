@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelPresentQuality = new System.Windows.Forms.Label();
+            this.labelPreviousQuality = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.txtFinger = new System.Windows.Forms.Label();
@@ -38,10 +42,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.minimize = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.labelPreviousQuality = new System.Windows.Forms.Label();
-            this.labelPresentQuality = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgScannedFinger)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -65,6 +65,48 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(425, 339);
             this.panel1.TabIndex = 3;
+            // 
+            // labelPresentQuality
+            // 
+            this.labelPresentQuality.AutoSize = true;
+            this.labelPresentQuality.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPresentQuality.Location = new System.Drawing.Point(338, 74);
+            this.labelPresentQuality.Name = "labelPresentQuality";
+            this.labelPresentQuality.Size = new System.Drawing.Size(13, 18);
+            this.labelPresentQuality.TabIndex = 36;
+            this.labelPresentQuality.Text = "-";
+            // 
+            // labelPreviousQuality
+            // 
+            this.labelPreviousQuality.AutoSize = true;
+            this.labelPreviousQuality.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPreviousQuality.Location = new System.Drawing.Point(42, 74);
+            this.labelPreviousQuality.Name = "labelPreviousQuality";
+            this.labelPreviousQuality.Size = new System.Drawing.Size(13, 18);
+            this.labelPreviousQuality.TabIndex = 35;
+            this.labelPreviousQuality.Text = "-";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(311, 44);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(89, 15);
+            this.label3.TabIndex = 34;
+            this.label3.Text = "Present Quality";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(15, 44);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 15);
+            this.label2.TabIndex = 33;
+            this.label2.Text = "Previous Quality";
             // 
             // btnStop
             // 
@@ -179,48 +221,6 @@
             this.label1.TabIndex = 31;
             this.label1.Text = "X";
             this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(15, 44);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 15);
-            this.label2.TabIndex = 33;
-            this.label2.Text = "Previous Quality";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(311, 44);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 15);
-            this.label3.TabIndex = 34;
-            this.label3.Text = "Present Quality";
-            // 
-            // labelPreviousQuality
-            // 
-            this.labelPreviousQuality.AutoSize = true;
-            this.labelPreviousQuality.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPreviousQuality.Location = new System.Drawing.Point(42, 74);
-            this.labelPreviousQuality.Name = "labelPreviousQuality";
-            this.labelPreviousQuality.Size = new System.Drawing.Size(37, 18);
-            this.labelPreviousQuality.TabIndex = 35;
-            this.labelPreviousQuality.Text = "50%";
-            // 
-            // labelPresentQuality
-            // 
-            this.labelPresentQuality.AutoSize = true;
-            this.labelPresentQuality.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPresentQuality.Location = new System.Drawing.Point(338, 74);
-            this.labelPresentQuality.Name = "labelPresentQuality";
-            this.labelPresentQuality.Size = new System.Drawing.Size(37, 18);
-            this.labelPresentQuality.TabIndex = 36;
-            this.labelPresentQuality.Text = "50%";
             // 
             // ScanFinger
             // 

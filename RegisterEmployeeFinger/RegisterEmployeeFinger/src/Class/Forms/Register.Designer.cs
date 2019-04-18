@@ -48,6 +48,11 @@
             this.labelNote2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.dataThumb = new System.Windows.Forms.Label();
+            this.dataIndexFinger = new System.Windows.Forms.Label();
+            this.dataMiddleFinger = new System.Windows.Forms.Label();
+            this.dataRingFinger = new System.Windows.Forms.Label();
+            this.dataPinkyFinger = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -316,6 +321,56 @@
             this.label3.TabIndex = 17;
             this.label3.Text = "Registered";
             // 
+            // dataThumb
+            // 
+            this.dataThumb.AutoSize = true;
+            this.dataThumb.Location = new System.Drawing.Point(728, 441);
+            this.dataThumb.Name = "dataThumb";
+            this.dataThumb.Size = new System.Drawing.Size(60, 13);
+            this.dataThumb.TabIndex = 18;
+            this.dataThumb.Text = "data thumb";
+            this.dataThumb.Visible = false;
+            // 
+            // dataIndexFinger
+            // 
+            this.dataIndexFinger.AutoSize = true;
+            this.dataIndexFinger.Location = new System.Drawing.Point(728, 462);
+            this.dataIndexFinger.Name = "dataIndexFinger";
+            this.dataIndexFinger.Size = new System.Drawing.Size(85, 13);
+            this.dataIndexFinger.TabIndex = 19;
+            this.dataIndexFinger.Text = "data index finger";
+            this.dataIndexFinger.Visible = false;
+            // 
+            // dataMiddleFinger
+            // 
+            this.dataMiddleFinger.AutoSize = true;
+            this.dataMiddleFinger.Location = new System.Drawing.Point(728, 481);
+            this.dataMiddleFinger.Name = "dataMiddleFinger";
+            this.dataMiddleFinger.Size = new System.Drawing.Size(90, 13);
+            this.dataMiddleFinger.TabIndex = 20;
+            this.dataMiddleFinger.Text = "data middle finger";
+            this.dataMiddleFinger.Visible = false;
+            // 
+            // dataRingFinger
+            // 
+            this.dataRingFinger.AutoSize = true;
+            this.dataRingFinger.Location = new System.Drawing.Point(728, 501);
+            this.dataRingFinger.Name = "dataRingFinger";
+            this.dataRingFinger.Size = new System.Drawing.Size(48, 13);
+            this.dataRingFinger.TabIndex = 21;
+            this.dataRingFinger.Text = "data ring";
+            this.dataRingFinger.Visible = false;
+            // 
+            // dataPinkyFinger
+            // 
+            this.dataPinkyFinger.AutoSize = true;
+            this.dataPinkyFinger.Location = new System.Drawing.Point(728, 523);
+            this.dataPinkyFinger.Name = "dataPinkyFinger";
+            this.dataPinkyFinger.Size = new System.Drawing.Size(56, 13);
+            this.dataPinkyFinger.TabIndex = 22;
+            this.dataPinkyFinger.Text = "data pinky";
+            this.dataPinkyFinger.Visible = false;
+            // 
             // FormRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -323,6 +378,11 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(800, 545);
             this.ControlBox = false;
+            this.Controls.Add(this.dataPinkyFinger);
+            this.Controls.Add(this.dataRingFinger);
+            this.Controls.Add(this.dataMiddleFinger);
+            this.Controls.Add(this.dataIndexFinger);
+            this.Controls.Add(this.dataThumb);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.labelNote2);
@@ -374,6 +434,11 @@
         private System.Windows.Forms.Button labelNote2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label dataThumb;
+        private System.Windows.Forms.Label dataIndexFinger;
+        private System.Windows.Forms.Label dataMiddleFinger;
+        private System.Windows.Forms.Label dataRingFinger;
+        private System.Windows.Forms.Label dataPinkyFinger;
     }
 }
 

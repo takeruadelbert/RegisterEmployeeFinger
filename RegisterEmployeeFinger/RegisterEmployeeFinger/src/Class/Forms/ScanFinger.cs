@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using RegisterEmployeeFinger.src.Class.Forms;
 using RegisterEmployeeFinger.src.Class.FingerprintDevice;
+using RegisterEmployeeFinger.src.Class.Helper;
 
 namespace RegisterEmployeeFinger.src.Class.Forms
 {
@@ -18,16 +19,19 @@ namespace RegisterEmployeeFinger.src.Class.Forms
         private int IndexFinger;
         private int templateLength;
         private Device device;
+        private TKHelper tk;
 
-        public ScanFinger(int EmployeeID, int IndexFinger)
+        public ScanFinger(int EmployeeID, int IndexFinger, int templateLength)
         {
             InitializeComponent();
+            tk = new TKHelper();
             btnStart.Enabled = false;
             this.EmployeeID = EmployeeID;
             this.IndexFinger = IndexFinger;
             this.templateLength = templateLength;
+            labelPreviousQuality.Text = tk.CalculatePercentageTemplateFingerprint(templateLength);
             string fingerType = "";
-            switch(this.IndexFinger)
+            switch (this.IndexFinger)
             {
                 case 0:
                     fingerType = "Thumb";
@@ -87,13 +91,16 @@ namespace RegisterEmployeeFinger.src.Class.Forms
 
         public void SetImage(Image image)
         {
-            imgScannedFinger.BackgroundImage = image;
+            if (imgScannedFinger.InvokeRequired)
+            {
+                imgScannedFinger.Invoke(new MethodInvoker(delegate { imgScannedFinger.BackgroundImage = image; }));
+            }
         }
 
         public void SetPresentQuality(string presentQuality)
         {
             // have to invoke this because we want to set the label from another thread.
-            if(labelPresentQuality.InvokeRequired)
+            if (labelPresentQuality.InvokeRequired)
             {
                 labelPresentQuality.Invoke(new MethodInvoker(delegate { labelPresentQuality.Text = presentQuality; }));
             }

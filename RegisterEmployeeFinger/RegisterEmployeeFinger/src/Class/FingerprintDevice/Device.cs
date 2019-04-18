@@ -170,7 +170,6 @@ namespace RegisterEmployeeFinger.src.Class.FingerprintDevice
 
                         // set quality finger
                         string present_quality_finger = tk.CalculatePercentageTemplateFingerprint(strShow.Length);
-                        Console.WriteLine(present_quality_finger);
                         scanFinger.SetPresentQuality(present_quality_finger);
                     }
                     break;

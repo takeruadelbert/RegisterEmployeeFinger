@@ -30,6 +30,7 @@ namespace RegisterEmployeeFinger
         {
             EmployeeID = -1;
             thumb.BackColor = Color.Red;
+            ResetDataFingers();            
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -115,6 +116,9 @@ namespace RegisterEmployeeFinger
                                     {
                                         int indexFinger = Convert.ToInt32(template.SelectToken("template_index"));
                                         ChangeIndexFingerColor(indexFinger);
+
+                                        int template_len = Convert.ToInt32(template.SelectToken("template_len"));
+                                        SetDataFinger(indexFinger, template_len);
                                     }
                                 }
                                 else
@@ -198,7 +202,8 @@ namespace RegisterEmployeeFinger
         {
             if (EmployeeID != -1)
             {
-                scanFinger = new ScanFinger(EmployeeID, 0);
+                int template_length = !string.IsNullOrEmpty(dataThumb.Text) ? Convert.ToInt32(dataThumb.Text) : -1;
+                scanFinger = new ScanFinger(EmployeeID, 0, template_length);
                 scanFinger.Show();
             }
             else
@@ -212,7 +217,8 @@ namespace RegisterEmployeeFinger
         {
             if (EmployeeID != -1)
             {
-                scanFinger = new ScanFinger(EmployeeID, 1);
+                int template_length = !string.IsNullOrEmpty(dataIndexFinger.Text) ? Convert.ToInt32(dataIndexFinger.Text) : -1;
+                scanFinger = new ScanFinger(EmployeeID, 1, template_length);
                 scanFinger.Show();
             }
             else
@@ -226,7 +232,8 @@ namespace RegisterEmployeeFinger
         {
             if (EmployeeID != -1)
             {
-                scanFinger = new ScanFinger(EmployeeID, 2);
+                int template_length = !string.IsNullOrEmpty(dataMiddleFinger.Text) ? Convert.ToInt32(dataMiddleFinger.Text) : -1;
+                scanFinger = new ScanFinger(EmployeeID, 2, template_length);
                 scanFinger.Show();
             }
             else
@@ -240,7 +247,8 @@ namespace RegisterEmployeeFinger
         {
             if (EmployeeID != -1)
             {
-                scanFinger = new ScanFinger(EmployeeID, 3);
+                int template_length = !string.IsNullOrEmpty(dataRingFinger.Text) ? Convert.ToInt32(dataRingFinger.Text) : -1;
+                scanFinger = new ScanFinger(EmployeeID, 3, template_length);
                 scanFinger.Show();
             }
             else
@@ -254,7 +262,8 @@ namespace RegisterEmployeeFinger
         {
             if (EmployeeID != -1)
             {
-                scanFinger = new ScanFinger(EmployeeID, 4);
+                int template_length = !string.IsNullOrEmpty(dataPinkyFinger.Text) ? Convert.ToInt32(dataPinkyFinger.Text) : -1;
+                scanFinger = new ScanFinger(EmployeeID, 4, template_length);
                 scanFinger.Show();
             }
             else
@@ -268,6 +277,37 @@ namespace RegisterEmployeeFinger
         {
             txtEmpName.Text = "Nama Pegawai";
             txtNIK.Text = "NIK";
+        }
+
+        private void ResetDataFingers()
+        {
+            dataThumb.Text = "";
+            dataIndexFinger.Text = "";
+            dataMiddleFinger.Text = "";
+            dataRingFinger.Text = "";
+            dataPinkyFinger.Text = "";
+        }
+
+        private void SetDataFinger(int templateIndex, int template_len)
+        {
+            switch(templateIndex)
+            {
+                case 0:
+                    dataThumb.Text = template_len.ToString();
+                    break;
+                case 1:
+                    dataIndexFinger.Text = template_len.ToString();
+                    break;
+                case 2:
+                    dataMiddleFinger.Text = template_len.ToString();
+                    break;
+                case 3:
+                    dataRingFinger.Text = template_len.ToString();
+                    break;
+                default:
+                    dataPinkyFinger.Text = template_len.ToString();
+                    break;
+            }
         }
     }
 }
