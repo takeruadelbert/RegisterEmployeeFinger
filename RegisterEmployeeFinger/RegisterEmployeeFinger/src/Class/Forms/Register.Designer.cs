@@ -31,11 +31,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtEmpName = new System.Windows.Forms.TextBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtNIK = new System.Windows.Forms.TextBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.thumb = new System.Windows.Forms.Button();
             this.indexFinger = new System.Windows.Forms.Button();
@@ -44,10 +44,14 @@
             this.pinky = new System.Windows.Forms.Button();
             this.minimize = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.labelNote1 = new System.Windows.Forms.Button();
+            this.labelNote2 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,6 +96,16 @@
             this.txtEmpName.Click += new System.EventHandler(this.txtEmpName_Click);
             this.txtEmpName.TextChanged += new System.EventHandler(this.txtEmpName_TextChanged);
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackgroundImage = global::RegisterEmployeeFinger.Properties.Resources.employee;
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox3.Location = new System.Drawing.Point(394, 18);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(40, 42);
+            this.pictureBox3.TabIndex = 10;
+            this.pictureBox3.TabStop = false;
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
@@ -116,26 +130,6 @@
             this.txtNIK.TextChanged += new System.EventHandler(this.txtNIK_TextChanged);
             this.txtNIK.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNIK_KeyDown);
             // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackgroundImage = global::RegisterEmployeeFinger.Properties.Resources.all_finger;
-            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Location = new System.Drawing.Point(284, 287);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(188, 212);
-            this.pictureBox4.TabIndex = 2;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackgroundImage = global::RegisterEmployeeFinger.Properties.Resources.employee;
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(394, 18);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(40, 42);
-            this.pictureBox3.TabIndex = 10;
-            this.pictureBox3.TabStop = false;
-            // 
             // pictureBox2
             // 
             this.pictureBox2.BackgroundImage = global::RegisterEmployeeFinger.Properties.Resources.nik;
@@ -145,6 +139,16 @@
             this.pictureBox2.Size = new System.Drawing.Size(40, 42);
             this.pictureBox2.TabIndex = 7;
             this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackgroundImage = global::RegisterEmployeeFinger.Properties.Resources.all_finger;
+            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox4.Location = new System.Drawing.Point(284, 287);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(188, 212);
+            this.pictureBox4.TabIndex = 2;
+            this.pictureBox4.TabStop = false;
             // 
             // pictureBox1
             // 
@@ -170,6 +174,7 @@
             this.thumb.TabIndex = 7;
             this.thumb.Text = "1";
             this.thumb.UseVisualStyleBackColor = false;
+            this.thumb.Click += new System.EventHandler(this.thumb_Click_1);
             // 
             // indexFinger
             // 
@@ -185,6 +190,7 @@
             this.indexFinger.TabIndex = 8;
             this.indexFinger.Text = "2";
             this.indexFinger.UseVisualStyleBackColor = false;
+            this.indexFinger.Click += new System.EventHandler(this.indexFinger_Click);
             // 
             // middleFinger
             // 
@@ -200,6 +206,7 @@
             this.middleFinger.TabIndex = 9;
             this.middleFinger.Text = "3";
             this.middleFinger.UseVisualStyleBackColor = false;
+            this.middleFinger.Click += new System.EventHandler(this.middleFinger_Click);
             // 
             // ringFinger
             // 
@@ -215,6 +222,7 @@
             this.ringFinger.TabIndex = 10;
             this.ringFinger.Text = "4";
             this.ringFinger.UseVisualStyleBackColor = false;
+            this.ringFinger.Click += new System.EventHandler(this.ringFinger_Click);
             // 
             // pinky
             // 
@@ -230,6 +238,7 @@
             this.pinky.TabIndex = 11;
             this.pinky.Text = "5";
             this.pinky.UseVisualStyleBackColor = false;
+            this.pinky.Click += new System.EventHandler(this.pinky_Click);
             // 
             // minimize
             // 
@@ -257,6 +266,56 @@
             this.label1.Text = "X";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // labelNote1
+            // 
+            this.labelNote1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelNote1.BackColor = System.Drawing.Color.Red;
+            this.labelNote1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.labelNote1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelNote1.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNote1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
+            this.labelNote1.Location = new System.Drawing.Point(47, 427);
+            this.labelNote1.Name = "labelNote1";
+            this.labelNote1.Size = new System.Drawing.Size(22, 26);
+            this.labelNote1.TabIndex = 14;
+            this.labelNote1.UseVisualStyleBackColor = false;
+            // 
+            // labelNote2
+            // 
+            this.labelNote2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelNote2.BackColor = System.Drawing.Color.Green;
+            this.labelNote2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.labelNote2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelNote2.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNote2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
+            this.labelNote2.Location = new System.Drawing.Point(47, 473);
+            this.labelNote2.Name = "labelNote2";
+            this.labelNote2.Size = new System.Drawing.Size(22, 26);
+            this.labelNote2.TabIndex = 15;
+            this.labelNote2.UseVisualStyleBackColor = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(77, 431);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(92, 18);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Unregistered";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(79, 476);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 18);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Registered";
+            // 
             // FormRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -264,6 +323,10 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(800, 545);
             this.ControlBox = false;
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.labelNote2);
+            this.Controls.Add(this.labelNote1);
             this.Controls.Add(this.minimize);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pinky);
@@ -280,9 +343,9 @@
             this.Text = "Form Register Employee Fingerprint";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -307,6 +370,10 @@
         private System.Windows.Forms.Button pinky;
         private System.Windows.Forms.Label minimize;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button labelNote1;
+        private System.Windows.Forms.Button labelNote2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 

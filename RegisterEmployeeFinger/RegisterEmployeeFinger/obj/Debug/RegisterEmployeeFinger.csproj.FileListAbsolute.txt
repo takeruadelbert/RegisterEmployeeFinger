@@ -15,3 +15,5 @@ D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinge
 D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\bin\Debug\Newtonsoft.Json.dll
 D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\bin\Debug\Newtonsoft.Json.pdb
 D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\bin\Debug\Newtonsoft.Json.xml
+D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\obj\Debug\RegisterEmployeeFinger.src.Class.Forms.ScanFinger.resources
+D:\Kantor\C#\RegisterEmployeeFinger\RegisterEmployeeFinger\RegisterEmployeeFinger\bin\Debug\libzkfpcsharp.dll

@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="libzkfpcsharp">
+      <HintPath>..\..\..\zkteco\test\test\bin\x86\Debug\libzkfpcsharp.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=8.0.13.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -52,16 +55,29 @@
     <Compile Include="src\Class\API\DataResponse.cs" />
     <Compile Include="src\Class\API\DataResponseFull.cs" />
     <Compile Include="src\Class\API\RestAPI.cs" />
+    <Compile Include="src\Class\CodeMessage\Code.cs" />
     <Compile Include="src\Class\Database\DB.cs" />
-    <Compile Include="src\Class\Form\Register.cs">
+    <Compile Include="src\Class\FingerprintDevice\Device.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Class\Form\Register.Designer.cs">
+    <Compile Include="src\Class\Forms\Register.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Class\Forms\Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="src\Class\Form\Register.resx">
+    <Compile Include="src\Class\Forms\ScanFinger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Class\Forms\ScanFinger.Designer.cs">
+      <DependentUpon>ScanFinger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\Class\Helper\TKHelper.cs" />
+    <Compile Include="src\Class\Miscellaneous\BitmapFormat.cs" />
+    <Compile Include="src\Class\Miscellaneous\Keyboard.cs" />
+    <EmbeddedResource Include="src\Class\Forms\Register.resx">
       <DependentUpon>Register.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -74,6 +90,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="src\Class\Forms\ScanFinger.resx">
+      <DependentUpon>ScanFinger.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -99,6 +118,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\all-finger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\no_image.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -11,11 +11,15 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RegisterEmployeeFinger.src.Class.API;
 using RegisterEmployeeFinger.src.Class.Database;
+using RegisterEmployeeFinger.src.Class.Forms;
 
 namespace RegisterEmployeeFinger
 {
     public partial class FormRegister : Form
     {
+        private ScanFinger scanFinger;
+        private int EmployeeID { get; set; }
+
         public FormRegister()
         {
             InitializeComponent();
@@ -24,6 +28,7 @@ namespace RegisterEmployeeFinger
 
         public void Init()
         {
+            EmployeeID = -1;
             thumb.BackColor = Color.Red;
         }
 
@@ -93,15 +98,18 @@ namespace RegisterEmployeeFinger
                     {
                         switch (dataResponse.Status)
                         {
-                            case 205:                                
+                            case 205:
                                 JObject responseData = dataResponse.Data;
-                                
+
+                                // set Employee ID
+                                EmployeeID = Convert.ToInt32(responseData["Employee"]["id"].ToString());
+
                                 // set employee name
                                 txtEmpName.Text = responseData["Employee"]["full_name"].ToString();
 
                                 // set index finger data if it's already exist.
                                 var dataFingerprint = responseData["Template"];
-                                if ( ((JArray) dataFingerprint).Count != 0)
+                                if (((JArray)dataFingerprint).Count != 0)
                                 {
                                     foreach (JToken template in dataFingerprint)
                                     {
@@ -115,7 +123,9 @@ namespace RegisterEmployeeFinger
                                 }
                                 break;
                             default:
-                                MessageBox.Show(dataResponse.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                EmployeeID = -1;
+                                ResetField();
+                                MessageBox.Show(dataResponse.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 break;
                         }
                     }
@@ -182,6 +192,82 @@ namespace RegisterEmployeeFinger
                 Dispose();
                 System.Environment.Exit(1);
             }
+        }
+
+        private void thumb_Click_1(object sender, EventArgs e)
+        {
+            if (EmployeeID != -1)
+            {
+                scanFinger = new ScanFinger(EmployeeID, 0);
+                scanFinger.Show();
+            }
+            else
+            {
+                MessageBox.Show("Invalid Employee ID / Still Empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+        }
+
+        private void indexFinger_Click(object sender, EventArgs e)
+        {
+            if (EmployeeID != -1)
+            {
+                scanFinger = new ScanFinger(EmployeeID, 1);
+                scanFinger.Show();
+            }
+            else
+            {
+                MessageBox.Show("Invalid Employee ID / Still Empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+        }
+
+        private void middleFinger_Click(object sender, EventArgs e)
+        {
+            if (EmployeeID != -1)
+            {
+                scanFinger = new ScanFinger(EmployeeID, 2);
+                scanFinger.Show();
+            }
+            else
+            {
+                MessageBox.Show("Invalid Employee ID / Still Empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+        }
+
+        private void ringFinger_Click(object sender, EventArgs e)
+        {
+            if (EmployeeID != -1)
+            {
+                scanFinger = new ScanFinger(EmployeeID, 3);
+                scanFinger.Show();
+            }
+            else
+            {
+                MessageBox.Show("Invalid Employee ID / Still Empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+        }
+
+        private void pinky_Click(object sender, EventArgs e)
+        {
+            if (EmployeeID != -1)
+            {
+                scanFinger = new ScanFinger(EmployeeID, 4);
+                scanFinger.Show();
+            }
+            else
+            {
+                MessageBox.Show("Invalid Employee ID / Still Empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+        }
+
+        private void ResetField()
+        {
+            txtEmpName.Text = "Nama Pegawai";
+            txtNIK.Text = "NIK";
         }
     }
 }
