@@ -60,6 +60,12 @@
     <Compile Include="src\Class\FingerprintDevice\Device.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="src\Class\Forms\About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Class\Forms\About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\Class\Forms\Register.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +83,9 @@
     <Compile Include="src\Class\Helper\TKHelper.cs" />
     <Compile Include="src\Class\Miscellaneous\BitmapFormat.cs" />
     <Compile Include="src\Class\Miscellaneous\Keyboard.cs" />
+    <EmbeddedResource Include="src\Class\Forms\About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\Class\Forms\Register.resx">
       <DependentUpon>Register.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,6 +130,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\no_image.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\setting-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\version.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

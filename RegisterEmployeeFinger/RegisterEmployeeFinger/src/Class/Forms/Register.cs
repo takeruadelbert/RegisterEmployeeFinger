@@ -18,6 +18,7 @@ namespace RegisterEmployeeFinger
     public partial class FormRegister : Form
     {
         private ScanFinger scanFinger;
+        private About about;
         private int EmployeeID { get; set; }
 
         public FormRegister()
@@ -30,7 +31,8 @@ namespace RegisterEmployeeFinger
         {
             EmployeeID = -1;
             thumb.BackColor = Color.Red;
-            ResetDataFingers();            
+            ResetDataFingers();
+            this.about = new About();
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -307,6 +309,28 @@ namespace RegisterEmployeeFinger
                 default:
                     dataPinkyFinger.Text = template_len.ToString();
                     break;
+            }
+        }
+
+        private void databaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void aboutProgramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!about.Visible)
+            {
+                about = new About();
+                about.Show();
+            }
+        }
+
+        private void pictureBox5_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                contextMenuStrip1.Show(this.PointToScreen(e.Location));
             }
         }
     }
