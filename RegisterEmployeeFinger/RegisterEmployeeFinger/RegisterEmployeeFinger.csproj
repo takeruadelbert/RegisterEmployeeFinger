@@ -66,6 +66,12 @@
     <Compile Include="src\Class\Forms\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\Class\Forms\DatabaseConifg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Class\Forms\DatabaseConifg.Designer.cs">
+      <DependentUpon>DatabaseConifg.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\Class\Forms\Register.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,9 @@
     <Compile Include="src\Class\Miscellaneous\Keyboard.cs" />
     <EmbeddedResource Include="src\Class\Forms\About.resx">
       <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Class\Forms\DatabaseConifg.resx">
+      <DependentUpon>DatabaseConifg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Class\Forms\Register.resx">
       <DependentUpon>Register.cs</DependentUpon>
@@ -139,6 +148,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\version.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\host.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\username5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\password3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

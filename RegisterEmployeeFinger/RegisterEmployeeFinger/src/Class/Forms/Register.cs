@@ -19,6 +19,7 @@ namespace RegisterEmployeeFinger
     {
         private ScanFinger scanFinger;
         private About about;
+        private DatabaseConifg DBConfig;
         private int EmployeeID { get; set; }
 
         public FormRegister()
@@ -33,6 +34,7 @@ namespace RegisterEmployeeFinger
             thumb.BackColor = Color.Red;
             ResetDataFingers();
             this.about = new About();
+            this.DBConfig = new DatabaseConifg(this);
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -314,7 +316,8 @@ namespace RegisterEmployeeFinger
 
         private void databaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Hide();
+            DBConfig.Show();
         }
 
         private void aboutProgramToolStripMenuItem_Click(object sender, EventArgs e)
