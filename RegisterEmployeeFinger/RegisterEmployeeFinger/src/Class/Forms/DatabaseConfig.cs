@@ -29,7 +29,7 @@ namespace RegisterEmployeeFinger.src.Class.Forms
 
         private void DatabaseConifg_Load(object sender, EventArgs e)
         {
-
+            Properties.Settings.Default.Reload();
         }
 
         private void InitData()

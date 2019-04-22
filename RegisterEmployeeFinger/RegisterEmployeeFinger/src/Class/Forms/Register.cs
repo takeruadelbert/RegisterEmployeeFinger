@@ -390,5 +390,11 @@ namespace RegisterEmployeeFinger
         {
 
         }
+
+        private void FormRegister_Load(object sender, EventArgs e)
+        {
+            db = new DB();
+            Properties.Settings.Default.Reload();
+        }
     }
 }
