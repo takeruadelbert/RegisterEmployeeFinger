@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using RegisterEmployeeFinger.src.Class.Forms;
 using RegisterEmployeeFinger.src.Class.FingerprintDevice;
 using RegisterEmployeeFinger.src.Class.Helper;
+using RegisterEmployeeFinger.src.Class.Database;
 
 namespace RegisterEmployeeFinger.src.Class.Forms
 {
@@ -18,17 +19,25 @@ namespace RegisterEmployeeFinger.src.Class.Forms
         private int EmployeeID;
         private int IndexFinger;
         private int templateLength;
+        public string DataFinger { get; set; }
+        public int DataFingerLength { get; set; }
+        public static int TemplateID { get; set; }
         private Device device;
         private TKHelper tk;
+        private DB db;
+        private FormRegister register;
 
-        public ScanFinger(int EmployeeID, int IndexFinger, int templateLength)
+        public ScanFinger(FormRegister register, int EmployeeID, int IndexFinger, int templateLength)
         {
             InitializeComponent();
             tk = new TKHelper();
+            db = new DB();
             btnStart.Enabled = false;
             this.EmployeeID = EmployeeID;
             this.IndexFinger = IndexFinger;
             this.templateLength = templateLength;
+            this.DataFinger = "";
+            this.register = register;
             labelPreviousQuality.Text = tk.CalculatePercentageTemplateFingerprint(templateLength);
             string fingerType = "";
             switch (this.IndexFinger)
@@ -55,12 +64,80 @@ namespace RegisterEmployeeFinger.src.Class.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-
+            if (db.CheckMySQLConnection())
+            {
+                if (EmployeeID > 0)
+                {
+                    if (!string.IsNullOrEmpty(DataFinger))
+                    {
+                        int resultCheck = db.CheckDataFingerExist(EmployeeID, IndexFinger);
+                        int effective = 1, template_type = 10, flag = 1;
+                        switch (resultCheck)
+                        {
+                            case 0:
+                                string query = "INSERT into hr_template (effective, template_type, template_len, template_str, flag, template_index, employee_id) VALUES("
+                                    + effective + "," + template_type + "," + this.DataFingerLength + ",'" + this.DataFinger + "'," + flag + "," + this.IndexFinger + "," + this.EmployeeID + ")";
+                                try
+                                {
+                                    db.Insert(query);
+                                    MessageBox.Show("Record has been inserted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show("Error : Fail to Insert Record into Database.\nMessage : " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                }
+                                break;
+                            case 1:
+                                if (TemplateID > 0)
+                                {
+                                    string update_query = "UPDATE hr_template SET template_len = " + this.DataFingerLength + ", template_str = '" + this.DataFinger + "' WHERE id = " + TemplateID;
+                                    try
+                                    {
+                                        db.Update(update_query);
+                                        MessageBox.Show("Record has been updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    } catch(Exception ex)
+                                    {
+                                        MessageBox.Show("Error : Fail to update record.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        return;
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Invalid Template ID.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    return;
+                                }
+                                break;
+                            default:
+                                MessageBox.Show("Error : Something's wrong when connecting to server.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please Scan Your Finger First.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Error : Invalid Employee ID.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error : Failed to Connect Database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Dispose();
+            device.CloseDevice();
+            device.Dispose();
+            register.FetchDataEmployee();
         }
 
         private void label1_Click(object sender, EventArgs e)

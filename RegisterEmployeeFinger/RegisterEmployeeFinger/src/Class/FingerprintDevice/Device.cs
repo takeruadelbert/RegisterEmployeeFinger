@@ -166,6 +166,8 @@ namespace RegisterEmployeeFinger.src.Class.FingerprintDevice
                         scanFinger.SetImage(bmp);
                         
                         String strShow = zkfp2.BlobToBase64(CapTmp, cbCapTmp);
+                        scanFinger.DataFinger = strShow;
+                        scanFinger.DataFingerLength = strShow.Length;
                         Console.WriteLine(strShow);
 
                         // set quality finger
@@ -185,6 +187,24 @@ namespace RegisterEmployeeFinger.src.Class.FingerprintDevice
             Thread.Sleep(1000);
             zkfp2.CloseDevice(mDevHandle);
             Console.WriteLine(Code.SUCC_CL_DEV);
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // Device
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "Device";
+            this.Load += new System.EventHandler(this.Device_Load_1);
+            this.ResumeLayout(false);
+
+        }
+
+        private void Device_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

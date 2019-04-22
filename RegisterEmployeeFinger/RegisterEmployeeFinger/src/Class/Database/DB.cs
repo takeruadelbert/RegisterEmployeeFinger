@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using RegisterEmployeeFinger.src.Class.Forms;
 
 namespace RegisterEmployeeFinger.src.Class.Database
 {
@@ -287,6 +288,30 @@ namespace RegisterEmployeeFinger.src.Class.Database
                 successful = false;
             }
             return successful;
+        }
+
+        public int CheckDataFingerExist(int EmployeeID, int indexFinger)
+        {
+            string query = "SELECT id FROM hr_template WHERE employee_id = '" + EmployeeID + "' AND template_index = '" + indexFinger + "';";
+            if (this.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.CommandText = query;
+                cmd.Connection = connection;
+                var reader = cmd.ExecuteReader();
+                int template_id = -1;
+                while (reader.Read())
+                {
+                    template_id = reader.GetInt32(0);
+                }
+                this.CloseConnection();
+                ScanFinger.TemplateID = template_id;
+                return template_id == -1 ? 0 : 1;
+            }
+            else
+            {
+                return -1;
+            }
         }
     }
 }

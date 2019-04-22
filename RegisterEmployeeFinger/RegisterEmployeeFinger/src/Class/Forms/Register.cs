@@ -90,58 +90,7 @@ namespace RegisterEmployeeFinger
             {
                 if (!string.IsNullOrEmpty(txtNIK.Text))
                 {
-                    RestAPI restAPI = new RestAPI();
-                    string ip = "http://" + Properties.Settings.Default.DBHost;
-                    string url = Properties.Settings.Default.API_URL_FetchDataEmployee;
-                    JObject param = new JObject();
-                    param["nik"] = txtNIK.Text;
-
-                    var sent_param = JsonConvert.SerializeObject(param);
-
-                    DataResponseFull dataResponse = restAPI.API_Post(ip, url, sent_param);
-                    if (dataResponse != null)
-                    {
-                        switch (dataResponse.Status)
-                        {
-                            case 205:
-                                JObject responseData = dataResponse.Data;
-
-                                // set Employee ID
-                                EmployeeID = Convert.ToInt32(responseData["Employee"]["id"].ToString());
-
-                                // set employee name
-                                txtEmpName.Text = responseData["Employee"]["full_name"].ToString();
-
-                                // set index finger data if it's already exist.
-                                var dataFingerprint = responseData["Template"];
-                                if (((JArray)dataFingerprint).Count != 0)
-                                {
-                                    foreach (JToken template in dataFingerprint)
-                                    {
-                                        int indexFinger = Convert.ToInt32(template.SelectToken("template_index"));
-                                        ChangeIndexFingerColor(indexFinger);
-
-                                        int template_len = Convert.ToInt32(template.SelectToken("template_len"));
-                                        SetDataFinger(indexFinger, template_len);
-                                    }
-                                }
-                                else
-                                {
-                                    ResetIndexFinger();
-                                }
-                                break;
-                            default:
-                                EmployeeID = -1;
-                                ResetField();
-                                MessageBox.Show(dataResponse.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error occurred while retrieving response from server.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                    FetchDataEmployee();
                 }
                 else
                 {
@@ -207,7 +156,7 @@ namespace RegisterEmployeeFinger
             if (EmployeeID != -1)
             {
                 int template_length = !string.IsNullOrEmpty(dataThumb.Text) ? Convert.ToInt32(dataThumb.Text) : -1;
-                scanFinger = new ScanFinger(EmployeeID, 0, template_length);
+                scanFinger = new ScanFinger(this, EmployeeID, 0, template_length);
                 scanFinger.Show();
             }
             else
@@ -222,7 +171,7 @@ namespace RegisterEmployeeFinger
             if (EmployeeID != -1)
             {
                 int template_length = !string.IsNullOrEmpty(dataIndexFinger.Text) ? Convert.ToInt32(dataIndexFinger.Text) : -1;
-                scanFinger = new ScanFinger(EmployeeID, 1, template_length);
+                scanFinger = new ScanFinger(this, EmployeeID, 1, template_length);
                 scanFinger.Show();
             }
             else
@@ -237,7 +186,7 @@ namespace RegisterEmployeeFinger
             if (EmployeeID != -1)
             {
                 int template_length = !string.IsNullOrEmpty(dataMiddleFinger.Text) ? Convert.ToInt32(dataMiddleFinger.Text) : -1;
-                scanFinger = new ScanFinger(EmployeeID, 2, template_length);
+                scanFinger = new ScanFinger(this, EmployeeID, 2, template_length);
                 scanFinger.Show();
             }
             else
@@ -252,7 +201,7 @@ namespace RegisterEmployeeFinger
             if (EmployeeID != -1)
             {
                 int template_length = !string.IsNullOrEmpty(dataRingFinger.Text) ? Convert.ToInt32(dataRingFinger.Text) : -1;
-                scanFinger = new ScanFinger(EmployeeID, 3, template_length);
+                scanFinger = new ScanFinger(this, EmployeeID, 3, template_length);
                 scanFinger.Show();
             }
             else
@@ -267,7 +216,7 @@ namespace RegisterEmployeeFinger
             if (EmployeeID != -1)
             {
                 int template_length = !string.IsNullOrEmpty(dataPinkyFinger.Text) ? Convert.ToInt32(dataPinkyFinger.Text) : -1;
-                scanFinger = new ScanFinger(EmployeeID, 4, template_length);
+                scanFinger = new ScanFinger(this, EmployeeID, 4, template_length);
                 scanFinger.Show();
             }
             else
@@ -294,7 +243,7 @@ namespace RegisterEmployeeFinger
 
         private void SetDataFinger(int templateIndex, int template_len)
         {
-            switch(templateIndex)
+            switch (templateIndex)
             {
                 case 0:
                     dataThumb.Text = template_len.ToString();
@@ -334,6 +283,62 @@ namespace RegisterEmployeeFinger
             if (e.Button == MouseButtons.Left)
             {
                 contextMenuStrip1.Show(this.PointToScreen(e.Location));
+            }
+        }
+
+        public void FetchDataEmployee()
+        {
+            RestAPI restAPI = new RestAPI();
+            string ip = "http://" + Properties.Settings.Default.DBHost;
+            string url = Properties.Settings.Default.API_URL_FetchDataEmployee;
+            JObject param = new JObject();
+            param["nik"] = txtNIK.Text;
+
+            var sent_param = JsonConvert.SerializeObject(param);
+
+            DataResponseFull dataResponse = restAPI.API_Post(ip, url, sent_param);
+            if (dataResponse != null)
+            {
+                switch (dataResponse.Status)
+                {
+                    case 205:
+                        JObject responseData = dataResponse.Data;
+
+                        // set Employee ID
+                        EmployeeID = Convert.ToInt32(responseData["Employee"]["id"].ToString());
+
+                        // set employee name
+                        txtEmpName.Text = responseData["Employee"]["full_name"].ToString();
+
+                        // set index finger data if it's already exist.
+                        var dataFingerprint = responseData["Template"];
+                        if (((JArray)dataFingerprint).Count != 0)
+                        {
+                            foreach (JToken template in dataFingerprint)
+                            {
+                                int indexFinger = Convert.ToInt32(template.SelectToken("template_index"));
+                                ChangeIndexFingerColor(indexFinger);
+
+                                int template_len = Convert.ToInt32(template.SelectToken("template_len"));
+                                SetDataFinger(indexFinger, template_len);
+                            }
+                        }
+                        else
+                        {
+                            ResetIndexFinger();
+                        }
+                        break;
+                    default:
+                        EmployeeID = -1;
+                        ResetField();
+                        MessageBox.Show(dataResponse.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error occurred while retrieving response from server.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
     }

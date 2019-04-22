@@ -89,6 +89,9 @@
     <Compile Include="src\Class\Helper\TKHelper.cs" />
     <Compile Include="src\Class\Miscellaneous\BitmapFormat.cs" />
     <Compile Include="src\Class\Miscellaneous\Keyboard.cs" />
+    <EmbeddedResource Include="src\Class\FingerprintDevice\Device.resx">
+      <DependentUpon>Device.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\Class\Forms\About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
