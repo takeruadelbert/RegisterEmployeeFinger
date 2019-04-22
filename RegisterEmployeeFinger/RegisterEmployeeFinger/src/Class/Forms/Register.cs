@@ -91,8 +91,8 @@ namespace RegisterEmployeeFinger
                 if (!string.IsNullOrEmpty(txtNIK.Text))
                 {
                     RestAPI restAPI = new RestAPI();
-                    string ip = "http://localhost";
-                    string url = "/vms/api/fetch-data-employee";
+                    string ip = "http://" + Properties.Settings.Default.DBHost;
+                    string url = Properties.Settings.Default.API_URL_FetchDataEmployee;
                     JObject param = new JObject();
                     param["nik"] = txtNIK.Text;
 
