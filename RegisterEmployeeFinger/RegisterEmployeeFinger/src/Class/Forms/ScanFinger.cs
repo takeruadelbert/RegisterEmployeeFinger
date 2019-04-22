@@ -39,25 +39,7 @@ namespace RegisterEmployeeFinger.src.Class.Forms
             this.DataFinger = "";
             this.register = register;
             labelPreviousQuality.Text = tk.CalculatePercentageTemplateFingerprint(templateLength);
-            string fingerType = "";
-            switch (this.IndexFinger)
-            {
-                case 0:
-                    fingerType = "Thumb";
-                    break;
-                case 1:
-                    fingerType = "Index Finger";
-                    break;
-                case 2:
-                    fingerType = "Middle Finger";
-                    break;
-                case 3:
-                    fingerType = "Ring Finger";
-                    break;
-                default:
-                    fingerType = "Pinky Finger";
-                    break;
-            }
+            string fingerType = GetFingerType(this.IndexFinger);
             txtFinger.Text = "Type : " + fingerType;
             device = new Device(this);
         }
@@ -145,6 +127,7 @@ namespace RegisterEmployeeFinger.src.Class.Forms
             Dispose();
             device.CloseDevice();
             device.Dispose();
+            register.FetchDataEmployee();
         }
 
         private void minimize_Click(object sender, EventArgs e)
@@ -181,6 +164,45 @@ namespace RegisterEmployeeFinger.src.Class.Forms
             {
                 labelPresentQuality.Invoke(new MethodInvoker(delegate { labelPresentQuality.Text = presentQuality; }));
             }
+        }
+
+        private string GetFingerType(int indexFinger)
+        {
+            string fingerType = "";
+            switch (indexFinger)
+            {
+                case 0:
+                    fingerType = "Left Pinky";
+                    break;
+                case 1:
+                    fingerType = "Left Ring";
+                    break;
+                case 2:
+                    fingerType = "Left Middle";
+                    break;
+                case 3:
+                    fingerType = "Left Index";
+                    break;
+                case 4:
+                    fingerType = "Left Thumb";
+                    break;
+                case 5:
+                    fingerType = "Right Thumb";
+                    break;
+                case 6:
+                    fingerType = "Right Index";
+                    break;
+                case 7:
+                    fingerType = "Right Middle";
+                    break;
+                case 8:
+                    fingerType = "Right Ring";
+                    break;
+                default:
+                    fingerType = "Right Pinky";
+                    break;
+            }
+            return fingerType;
         }
     }
 }

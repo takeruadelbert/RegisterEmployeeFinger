@@ -19,7 +19,8 @@ namespace RegisterEmployeeFinger
     {
         private ScanFinger scanFinger;
         private About about;
-        private DatabaseConifg DBConfig;
+        private DatabaseConfig DBConfig;
+        private DB db;
         private int EmployeeID { get; set; }
 
         public FormRegister()
@@ -31,10 +32,11 @@ namespace RegisterEmployeeFinger
         public void Init()
         {
             EmployeeID = -1;
-            thumb.BackColor = Color.Red;
+            thumbRight.BackColor = Color.Red;
             ResetDataFingers();
             this.about = new About();
-            this.DBConfig = new DatabaseConifg(this);
+            this.DBConfig = new DatabaseConfig(this);
+            this.db = new DB();
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -88,13 +90,23 @@ namespace RegisterEmployeeFinger
             // Keyboard's Enter Event Binding
             if (e.KeyCode == Keys.Enter)
             {
-                if (!string.IsNullOrEmpty(txtNIK.Text))
+                if (db.CheckMySQLConnection())
                 {
-                    FetchDataEmployee();
+                    if (!string.IsNullOrEmpty(txtNIK.Text))
+                    {
+                        ResetDataFingers();
+                        ResetIndexFinger();
+                        FetchDataEmployee();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid NIK : Must be filled.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Invalid NIK : Must be filled.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Warning : Please setup database configuration properly.", "Warning" , MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
@@ -110,30 +122,51 @@ namespace RegisterEmployeeFinger
             switch (index)
             {
                 case 0:
-                    thumb.BackColor = Color.Green;
+                    pinkyLeft.BackColor = Color.Green;
                     break;
                 case 1:
-                    indexFinger.BackColor = Color.Green;
+                    ringFingerLeft.BackColor = Color.Green;
                     break;
                 case 2:
-                    middleFinger.BackColor = Color.Green;
+                    middleFingerLeft.BackColor = Color.Green;
                     break;
                 case 3:
-                    ringFinger.BackColor = Color.Green;
+                    indexFingerLeft.BackColor = Color.Green;
+                    break;
+                case 4:
+                    thumbLeft.BackColor = Color.Green;
+                    break;
+                case 5:
+                    thumbRight.BackColor = Color.Green;
+                    break;
+                case 6:
+                    indexFingerRight.BackColor = Color.Green;
+                    break;
+                case 7:
+                    middleFingerRight.BackColor = Color.Green;
+                    break;
+                case 8:
+                    ringFingerRight.BackColor = Color.Green;
                     break;
                 default:
-                    pinky.BackColor = Color.Green;
+                    pinkyRight.BackColor = Color.Green;
                     break;
             }
         }
 
         private void ResetIndexFinger()
         {
-            thumb.BackColor = Color.Red;
-            indexFinger.BackColor = Color.Red;
-            middleFinger.BackColor = Color.Red;
-            ringFinger.BackColor = Color.Red;
-            pinky.BackColor = Color.Red;
+            thumbRight.BackColor = Color.Red;
+            indexFingerRight.BackColor = Color.Red;
+            middleFingerRight.BackColor = Color.Red;
+            ringFingerRight.BackColor = Color.Red;
+            pinkyRight.BackColor = Color.Red;
+
+            thumbLeft.BackColor = Color.Red;
+            indexFingerLeft.BackColor = Color.Red;
+            middleFingerLeft.BackColor = Color.Red;
+            ringFingerLeft.BackColor = Color.Red;
+            pinkyLeft.BackColor = Color.Red;
         }
 
         private void minimize_Click(object sender, EventArgs e)
@@ -153,77 +186,27 @@ namespace RegisterEmployeeFinger
 
         private void thumb_Click_1(object sender, EventArgs e)
         {
-            if (EmployeeID != -1)
-            {
-                int template_length = !string.IsNullOrEmpty(dataThumb.Text) ? Convert.ToInt32(dataThumb.Text) : -1;
-                scanFinger = new ScanFinger(this, EmployeeID, 0, template_length);
-                scanFinger.Show();
-            }
-            else
-            {
-                MessageBox.Show("Invalid Employee ID / Still Empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            SetDataFingerButton(dataThumbRight, thumbRight);
         }
 
         private void indexFinger_Click(object sender, EventArgs e)
         {
-            if (EmployeeID != -1)
-            {
-                int template_length = !string.IsNullOrEmpty(dataIndexFinger.Text) ? Convert.ToInt32(dataIndexFinger.Text) : -1;
-                scanFinger = new ScanFinger(this, EmployeeID, 1, template_length);
-                scanFinger.Show();
-            }
-            else
-            {
-                MessageBox.Show("Invalid Employee ID / Still Empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            SetDataFingerButton(dataIndexFingerRight, indexFingerRight);
         }
 
         private void middleFinger_Click(object sender, EventArgs e)
         {
-            if (EmployeeID != -1)
-            {
-                int template_length = !string.IsNullOrEmpty(dataMiddleFinger.Text) ? Convert.ToInt32(dataMiddleFinger.Text) : -1;
-                scanFinger = new ScanFinger(this, EmployeeID, 2, template_length);
-                scanFinger.Show();
-            }
-            else
-            {
-                MessageBox.Show("Invalid Employee ID / Still Empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            SetDataFingerButton(dataMiddleFingerLeft, middleFingerRight);
         }
 
         private void ringFinger_Click(object sender, EventArgs e)
         {
-            if (EmployeeID != -1)
-            {
-                int template_length = !string.IsNullOrEmpty(dataRingFinger.Text) ? Convert.ToInt32(dataRingFinger.Text) : -1;
-                scanFinger = new ScanFinger(this, EmployeeID, 3, template_length);
-                scanFinger.Show();
-            }
-            else
-            {
-                MessageBox.Show("Invalid Employee ID / Still Empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            SetDataFingerButton(dataRingFingerRight, ringFingerRight);
         }
 
         private void pinky_Click(object sender, EventArgs e)
         {
-            if (EmployeeID != -1)
-            {
-                int template_length = !string.IsNullOrEmpty(dataPinkyFinger.Text) ? Convert.ToInt32(dataPinkyFinger.Text) : -1;
-                scanFinger = new ScanFinger(this, EmployeeID, 4, template_length);
-                scanFinger.Show();
-            }
-            else
-            {
-                MessageBox.Show("Invalid Employee ID / Still Empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            SetDataFingerButton(dataPinkyFingerRight, pinkyRight);
         }
 
         private void ResetField()
@@ -234,11 +217,17 @@ namespace RegisterEmployeeFinger
 
         private void ResetDataFingers()
         {
-            dataThumb.Text = "";
-            dataIndexFinger.Text = "";
-            dataMiddleFinger.Text = "";
-            dataRingFinger.Text = "";
-            dataPinkyFinger.Text = "";
+            dataThumbRight.Text = "0";
+            dataIndexFingerRight.Text = "0";
+            dataMiddleFingerRight.Text = "0";
+            dataRingFingerRight.Text = "0";
+            dataPinkyFingerRight.Text = "0";
+
+            dataPinkyFingerLeft.Text = "0";
+            dataRingFingerLeft.Text = "0";
+            dataMiddleFingerLeft.Text = "0";
+            dataIndexFingerLeft.Text = "0";
+            dataThumbLeft.Text = "0";
         }
 
         private void SetDataFinger(int templateIndex, int template_len)
@@ -246,19 +235,34 @@ namespace RegisterEmployeeFinger
             switch (templateIndex)
             {
                 case 0:
-                    dataThumb.Text = template_len.ToString();
+                    dataPinkyFingerLeft.Text = template_len.ToString();
                     break;
                 case 1:
-                    dataIndexFinger.Text = template_len.ToString();
+                    dataRingFingerLeft.Text = template_len.ToString();
                     break;
                 case 2:
-                    dataMiddleFinger.Text = template_len.ToString();
+                    dataMiddleFingerLeft.Text = template_len.ToString();
                     break;
                 case 3:
-                    dataRingFinger.Text = template_len.ToString();
+                    dataIndexFingerLeft.Text = template_len.ToString();
+                    break;
+                case 4:
+                    dataThumbLeft.Text = template_len.ToString();
+                    break;
+                case 5:
+                    dataThumbRight.Text = template_len.ToString();
+                    break;
+                case 6:
+                    dataIndexFingerRight.Text = template_len.ToString();
+                    break;
+                case 7:
+                    dataMiddleFingerRight.Text = template_len.ToString();
+                    break;
+                case 8:
+                    dataRingFingerRight.Text = template_len.ToString();
                     break;
                 default:
-                    dataPinkyFinger.Text = template_len.ToString();
+                    dataPinkyFingerRight.Text = template_len.ToString();
                     break;
             }
         }
@@ -340,6 +344,51 @@ namespace RegisterEmployeeFinger
                 MessageBox.Show("Error occurred while retrieving response from server.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+        }
+
+        private void thumbLeft_Click(object sender, EventArgs e)
+        {
+            SetDataFingerButton(dataThumbLeft, thumbLeft);
+        }
+
+        private void indexFingerLeft_Click(object sender, EventArgs e)
+        {
+            SetDataFingerButton(dataIndexFingerLeft, indexFingerLeft);
+        }
+
+        private void middleFingerLeft_Click(object sender, EventArgs e)
+        {
+            SetDataFingerButton(dataMiddleFingerLeft, middleFingerLeft);
+        }
+
+        private void ringFingerLeft_Click(object sender, EventArgs e)
+        {
+            SetDataFingerButton(dataRingFingerLeft, ringFingerLeft);
+        }
+
+        private void SetDataFingerButton(Label finger, Button btnFinger)
+        {
+            if (EmployeeID != -1)
+            {
+                int template_length = !string.IsNullOrEmpty(finger.Text) ? Convert.ToInt32(finger.Text) : -1;
+                scanFinger = new ScanFinger(this, EmployeeID, Convert.ToInt32(btnFinger.Text) - 1, template_length);
+                scanFinger.Show();
+            }
+            else
+            {
+                MessageBox.Show("Invalid Employee ID / Still Empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+        }
+
+        private void pinkyLeft_Click_1(object sender, EventArgs e)
+        {
+            SetDataFingerButton(dataPinkyFingerLeft, pinkyLeft);
+        }
+
+        private void dataPinkyFingerLeft_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

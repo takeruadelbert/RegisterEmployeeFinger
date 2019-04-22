@@ -13,10 +13,10 @@ namespace RegisterEmployeeFinger.src.Class.Database
     class DB
     {
         private MySqlConnection connection;
-        private string server;
-        private string database;
-        private string uid;
-        private string password;
+        public string server { get; set; }
+        public string database { get; set; }
+        public string uid { get; set; }
+        public string password { get; set; }
 
         public DB()
         {
@@ -24,7 +24,7 @@ namespace RegisterEmployeeFinger.src.Class.Database
         }
 
         private void Initialize()
-        {
+        {            
             server = Properties.Settings.Default.DBHost;
             database = Properties.Settings.Default.DBName;
             uid = Properties.Settings.Default.DBUsername;
@@ -53,7 +53,6 @@ namespace RegisterEmployeeFinger.src.Class.Database
                     case 0:
                         Console.WriteLine("Cannot connect to server.  Contact administrator");
                         break;
-
                     case 1045:
                         Console.WriteLine("Invalid username/password, please try again");
                         break;

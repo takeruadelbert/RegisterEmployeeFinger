@@ -31,6 +31,46 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="libzkfpcsharp">
       <HintPath>..\..\..\zkteco\test\test\bin\x86\Debug\libzkfpcsharp.dll</HintPath>
@@ -66,11 +106,11 @@
     <Compile Include="src\Class\Forms\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\Class\Forms\DatabaseConifg.cs">
+    <Compile Include="src\Class\Forms\DatabaseConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Class\Forms\DatabaseConifg.Designer.cs">
-      <DependentUpon>DatabaseConifg.cs</DependentUpon>
+    <Compile Include="src\Class\Forms\DatabaseConfig.Designer.cs">
+      <DependentUpon>DatabaseConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="src\Class\Forms\Register.cs">
       <SubType>Form</SubType>
@@ -95,8 +135,8 @@
     <EmbeddedResource Include="src\Class\Forms\About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\Class\Forms\DatabaseConifg.resx">
-      <DependentUpon>DatabaseConifg.cs</DependentUpon>
+    <EmbeddedResource Include="src\Class\Forms\DatabaseConfig.resx">
+      <DependentUpon>DatabaseConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Class\Forms\Register.resx">
       <DependentUpon>Register.cs</DependentUpon>
@@ -160,6 +200,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\password3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left-hand.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
