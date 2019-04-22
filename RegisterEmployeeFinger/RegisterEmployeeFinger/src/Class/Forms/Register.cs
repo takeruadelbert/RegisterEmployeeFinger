@@ -19,7 +19,7 @@ namespace RegisterEmployeeFinger
     {
         private ScanFinger scanFinger;
         private About about;
-        private DatabaseConfig DBConfig;
+        private DatabaseConifg DBConfig;
         private DB db;
         private int EmployeeID { get; set; }
 
@@ -35,7 +35,7 @@ namespace RegisterEmployeeFinger
             thumbRight.BackColor = Color.Red;
             ResetDataFingers();
             this.about = new About();
-            this.DBConfig = new DatabaseConfig(this);
+            this.DBConfig = new DatabaseConifg(this);
             this.db = new DB();
         }
 

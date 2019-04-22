@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using RegisterEmployeeFinger.src.Class.Helper;
+using RegisterEmployeeFinger.src.Class.Database;
 
 namespace RegisterEmployeeFinger.src.Class.Forms
 {
@@ -75,8 +76,8 @@ namespace RegisterEmployeeFinger.src.Class.Forms
 
         private void back_Click(object sender, EventArgs e)
         {
-            register.Show();
             Hide();
+            register.Show();
         }
 
         private void save_Click(object sender, EventArgs e)
@@ -91,7 +92,6 @@ namespace RegisterEmployeeFinger.src.Class.Forms
                 Properties.Settings.Default.DBName = db_name;
                 Properties.Settings.Default.DBUsername = db_username;
                 Properties.Settings.Default.DBPassword = db_password;
-                Console.WriteLine(Properties.Settings.Default.DBHost);
                 this.DBHost = db_host;
                 this.DBName = db_name;
                 this.DBUsername = db_username;
