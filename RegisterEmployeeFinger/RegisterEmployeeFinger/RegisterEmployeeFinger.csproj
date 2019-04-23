@@ -112,6 +112,12 @@
     <Compile Include="src\Class\Forms\DatabaseConfig.Designer.cs">
       <DependentUpon>DatabaseConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\Class\Forms\Loading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Class\Forms\Loading.Designer.cs">
+      <DependentUpon>Loading.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\Class\Forms\Register.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\Class\Forms\DatabaseConfig.resx">
       <DependentUpon>DatabaseConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Class\Forms\Loading.resx">
+      <DependentUpon>Loading.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Class\Forms\Register.resx">
       <DependentUpon>Register.cs</DependentUpon>
