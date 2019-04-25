@@ -71,6 +71,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>menu-icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="libzkfpcsharp">
       <HintPath>..\..\..\zkteco\test\test\bin\x86\Debug\libzkfpcsharp.dll</HintPath>
@@ -212,6 +215,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\left-hand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="menu-icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
