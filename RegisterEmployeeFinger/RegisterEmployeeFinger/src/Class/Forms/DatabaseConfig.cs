@@ -74,12 +74,6 @@ namespace RegisterEmployeeFinger.src.Class.Forms
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void back_Click(object sender, EventArgs e)
-        {
-            Hide();
-            register.Show();
-        }
-
         private void save_Click(object sender, EventArgs e)
         {
             string db_host = txtDBHost.Text.ToString();
@@ -97,7 +91,9 @@ namespace RegisterEmployeeFinger.src.Class.Forms
                 this.DBUsername = db_username;
                 this.DBPassword = db_password;
                 Properties.Settings.Default.Save();
+                Properties.Settings.Default.Upgrade();                
                 MessageBox.Show("Konfigurasi Database Berhasil Diupdate.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Application.Restart();
             }
         }
 
@@ -138,55 +134,55 @@ namespace RegisterEmployeeFinger.src.Class.Forms
 
         private void txtDBHost_TextChanged(object sender, EventArgs e)
         {
-            this.TextChangeListener(true);
+            this.TextChangeListener(txtDBHost.Text.ToString(), true);
         }
 
         private void txtDBHost_Click(object sender, EventArgs e)
         {
-            this.TextChangeListener();
+            this.TextChangeListener(txtDBHost.Text.ToString());
         }
 
         private void txtDBName_TextChanged(object sender, EventArgs e)
         {
-            this.TextChangeListener(true);
+            this.TextChangeListener(txtDBName.Text.ToString(), true);
         }
 
         private void txtDBName_Click(object sender, EventArgs e)
         {
-            this.TextChangeListener();
+            this.TextChangeListener(txtDBName.Text.ToString());
         }
 
         private void txtDBUsername_TextChanged(object sender, EventArgs e)
         {
-            this.TextChangeListener(true);
+            this.TextChangeListener(txtDBUsername.Text.ToString(), true);
         }
 
         private void txtDBUsername_Click(object sender, EventArgs e)
         {
-            this.TextChangeListener();
+            this.TextChangeListener(txtDBUsername.Text.ToString());
         }
 
         private void txtDBPassword_TextChanged(object sender, EventArgs e)
         {
-            this.TextChangeListener(true);
+            this.TextChangeListener(txtDBPassword.Text.ToString(), true);
         }
 
         private void txtDBPassword_Click(object sender, EventArgs e)
         {
-            this.TextChangeListener();
+            this.TextChangeListener(txtDBPassword.Text.ToString());
         }
 
-        private void TextChangeListener(bool is_textchanged = false)
+        private void TextChangeListener(string fieldName, bool is_textchanged = false)
         {
             if (!is_textchanged)
             {
-                if (txtDBHost.Text == "Host")
+                if (fieldName == "Host")
                     txtDBHost.Clear();
-                if (txtDBName.Text == "Database Name")
+                if (fieldName == "Database Name")
                     txtDBName.Clear();
-                if (txtDBUsername.Text == "Username")
+                if (fieldName == "Username")
                     txtDBUsername.Clear();
-                if (txtDBPassword.Text == "Password")
+                if (fieldName == "Password")
                     txtDBPassword.Clear();
             }
             txtDBPassword.PasswordChar = '●';
@@ -221,6 +217,12 @@ namespace RegisterEmployeeFinger.src.Class.Forms
                 MessageBox.Show("There's still invalid field.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+        }
+
+        private void back_Click(object sender, EventArgs e)
+        {
+            Hide();
+            register.Show();
         }
     }
 }

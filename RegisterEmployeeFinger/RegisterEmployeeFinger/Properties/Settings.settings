@@ -15,7 +15,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="API_URL_FetchDataEmployee" Type="System.String" Scope="User">
-      <Value Profile="(Default)">/vms/api/fetch-data-employee</Value>
+      <Value Profile="(Default)">/visitor-management-system/api/fetch-data-employee</Value>
     </Setting>
   </Settings>
 </SettingsFile>

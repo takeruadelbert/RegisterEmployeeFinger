@@ -73,7 +73,7 @@ namespace RegisterEmployeeFinger.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("/vms/api/fetch-data-employee")]
+        [global::System.Configuration.DefaultSettingValueAttribute("/visitor-management-system/api/fetch-data-employee")]
         public string API_URL_FetchDataEmployee {
             get {
                 return ((string)(this["API_URL_FetchDataEmployee"]));
