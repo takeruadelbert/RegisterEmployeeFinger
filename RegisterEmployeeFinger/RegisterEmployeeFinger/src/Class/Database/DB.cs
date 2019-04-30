@@ -10,7 +10,7 @@ using RegisterEmployeeFinger.src.Class.Forms;
 
 namespace RegisterEmployeeFinger.src.Class.Database
 {
-    class DB
+    public class DB
     {
         private MySqlConnection connection;
         public string server { get; set; }
@@ -21,6 +21,16 @@ namespace RegisterEmployeeFinger.src.Class.Database
         public DB()
         {
             Initialize();
+        }
+
+        public DB(string server, string database, string uid, string password)
+        {
+            server = server;
+            database = database;
+            uid = uid;
+            password = password;
+            string connectionString = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+            connection = new MySqlConnection(connectionString);
         }
 
         private void Initialize()

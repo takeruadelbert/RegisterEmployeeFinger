@@ -195,5 +195,32 @@ namespace RegisterEmployeeFinger.src.Class.Forms
             txtDBUsername.ForeColor = Color.FromArgb(78, 184, 206);
             txtDBPassword.ForeColor = Color.FromArgb(78, 184, 206);
         }
+
+        private void btnTestConnection_Click(object sender, EventArgs e)
+        {
+            string serverHost = txtDBHost.Text.ToString();
+            string dbName = txtDBName.Text.ToString();
+            string username = txtDBUsername.Text.ToString();
+            string password = txtDBPassword.Text.ToString();
+            if (ValidateFields(serverHost, dbName, username, password))
+            {
+                DB db = new DB(serverHost, dbName, username, password);
+                if (db.CheckMySQLConnection())
+                {
+                    MessageBox.Show("Connection Established.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Failed to connect.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("There's still invalid field.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+        }
     }
 }

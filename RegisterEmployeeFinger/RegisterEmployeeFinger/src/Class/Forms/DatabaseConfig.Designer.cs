@@ -47,6 +47,7 @@
             this.quit = new System.Windows.Forms.Label();
             this.save = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnTestConnection = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.username)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.password)).BeginInit();
@@ -228,7 +229,7 @@
             this.back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.back.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.back.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
-            this.back.Location = new System.Drawing.Point(248, 341);
+            this.back.Location = new System.Drawing.Point(179, 341);
             this.back.Name = "back";
             this.back.Size = new System.Drawing.Size(111, 34);
             this.back.TabIndex = 26;
@@ -255,7 +256,7 @@
             this.save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.save.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
-            this.save.Location = new System.Drawing.Point(381, 341);
+            this.save.Location = new System.Drawing.Point(312, 341);
             this.save.Name = "save";
             this.save.Size = new System.Drawing.Size(111, 34);
             this.save.TabIndex = 25;
@@ -273,12 +274,27 @@
             this.pictureBox1.TabIndex = 23;
             this.pictureBox1.TabStop = false;
             // 
+            // btnTestConnection
+            // 
+            this.btnTestConnection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
+            this.btnTestConnection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTestConnection.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTestConnection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
+            this.btnTestConnection.Location = new System.Drawing.Point(446, 341);
+            this.btnTestConnection.Name = "btnTestConnection";
+            this.btnTestConnection.Size = new System.Drawing.Size(125, 34);
+            this.btnTestConnection.TabIndex = 29;
+            this.btnTestConnection.Text = "Test Connection";
+            this.btnTestConnection.UseVisualStyleBackColor = false;
+            this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
+            // 
             // DatabaseConifg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(723, 425);
+            this.Controls.Add(this.btnTestConnection);
             this.Controls.Add(this.minimize);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.back);
@@ -324,5 +340,6 @@
         private System.Windows.Forms.Label quit;
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnTestConnection;
     }
 }
