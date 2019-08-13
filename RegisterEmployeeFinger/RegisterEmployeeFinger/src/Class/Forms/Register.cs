@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RegisterEmployeeFinger.src.Class.API;
 using RegisterEmployeeFinger.src.Class.Database;
 using RegisterEmployeeFinger.src.Class.Forms;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace RegisterEmployeeFinger
 {
@@ -37,6 +33,7 @@ namespace RegisterEmployeeFinger
             thumbRight.BackColor = Color.Red;
             ResetDataFingers();
             this.about = new About();
+            //MessageBox.Show("Start", "Start", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.DBConfig = new DatabaseConifg(this);
             this.db = new DB();
             this.loading = new Loading();
@@ -97,7 +94,7 @@ namespace RegisterEmployeeFinger
                 if (db.CheckMySQLConnection())
                 {
                     if (!string.IsNullOrEmpty(txtNIK.Text))
-                    {       
+                    {
                         ResetDataFingers();
                         ResetIndexFinger();
                         await Task.Run(() => FetchDataEmployee());
@@ -299,60 +296,37 @@ namespace RegisterEmployeeFinger
 
         public void FetchDataEmployee()
         {
+            this.Invoke((MethodInvoker)delegate
+           {
+               string nik = txtNIK.Text;
+               IDictionary<string, Object> dataEmployee = db.get_employee(nik);
+               int employee_id = (int)dataEmployee["id"];
+               string employee_name = dataEmployee["name"].ToString();
 
-            RestAPI restAPI = new RestAPI();
-            string ip = "http://" + Properties.Settings.Default.DBHost;
-            string url = Properties.Settings.Default.API_URL_FetchDataEmployee;
-            JObject param = new JObject();
-            param["nik"] = txtNIK.Text;
-            var sent_param = JsonConvert.SerializeObject(param);
-            this.Invoke((MethodInvoker) delegate
-            {
-                DataResponseFull dataResponse = restAPI.API_Post(ip, url, sent_param);
-                if (dataResponse != null)
-                {
-                    switch (dataResponse.Status)
-                    {
-                        case 205:
-                            JObject responseData = dataResponse.Data;
+               // set Employee ID
+               EmployeeID = employee_id;
 
-                            // set Employee ID
-                            EmployeeID = Convert.ToInt32(responseData["Employee"]["id"].ToString());
+               // set employee name
+               txtEmpName.Text = employee_name;
 
-                            // set employee name
-                            txtEmpName.Text = responseData["Employee"]["full_name"].ToString();
+               // set index finger data if it's already exist.
+               List<IDictionary<string, Object>> dataTemplate = db.get_template(employee_id);
+               if (dataTemplate.Count > 0)
+               {
+                   foreach (IDictionary<string, Object> temp in dataTemplate)
+                   {
+                       int indexFinger = (int)temp["finger"];
+                       ChangeIndexFingerColor(indexFinger);
 
-                            // set index finger data if it's already exist.
-                            var dataFingerprint = responseData["Template"];
-                            if (((JArray)dataFingerprint).Count != 0)
-                            {
-                                foreach (JToken template in dataFingerprint)
-                                {
-                                    int indexFinger = Convert.ToInt32(template.SelectToken("template_index"));
-                                    ChangeIndexFingerColor(indexFinger);
-
-                                    int template_len = Convert.ToInt32(template.SelectToken("template_len"));
-                                    SetDataFinger(indexFinger, template_len);
-                                }
-                            }
-                            else
-                            {
-                                ResetIndexFinger();
-                            }
-                            break;
-                        default:
-                            EmployeeID = -1;
-                            ResetField();
-                            MessageBox.Show(dataResponse.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            break;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Error occurred while retrieving response from server.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            });
+                       int template_length = (int)temp["length"];
+                       SetDataFinger(indexFinger, template_length);
+                   }
+               }
+               else
+               {
+                   ResetDataFingers();
+               }
+           });
         }
 
         private void thumbLeft_Click(object sender, EventArgs e)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace RegisterEmployeeFinger.src.Class.Database
         }
 
         private void Initialize()
-        {            
+        {
             server = Properties.Settings.Default.DBHost;
             database = Properties.Settings.Default.DBName;
             uid = Properties.Settings.Default.DBUsername;
@@ -134,48 +135,58 @@ namespace RegisterEmployeeFinger.src.Class.Database
         }
 
         //Select statement
-        public List<string>[] Select()
+        public IDictionary<string, Object> get_employee(string nik)
         {
-            // for example
-            string query = "SELECT * FROM settlements";
+            IDictionary<string, Object> employee = new Dictionary<string, object>();
+            if (!string.IsNullOrEmpty(nik))
+            {
+                string query = "SELECT id, nik, emp_firstName as firstName, emp_lastName as lastName FROM `hr_employee` WHERE nik = " + nik;
+                //Open connection
+                if (this.OpenConnection() == true)
+                {
+                    //Create Command
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
 
-            //Create a list to store the result
-            List<string>[] list = new List<string>[3];
-            list[0] = new List<string>();
-            list[1] = new List<string>();
-            list[2] = new List<string>();
-            list[3] = new List<string>();
+                    //Create a data reader and Execute the command
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
 
-            //Open connection
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        employee["id"] = (int)dataReader["id"];
+                        string fullname = dataReader["firstName"].ToString() + dataReader["lastName"].ToString();
+                        employee["name"] = fullname;
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+
+                    //close Connection
+                    this.CloseConnection();
+                }
+            }
+            return employee;
+        }
+
+        public List<IDictionary<string, Object>> get_template(int employee_id)
+        {
+            List<IDictionary<string, Object>> data = new List<IDictionary<string, object>>();
+            string query = "SELECT id, template_index as finger, template_len as length FROM `hr_template` WHERE employee_id = " + employee_id;
             if (this.OpenConnection() == true)
             {
-                //Create Command
                 MySqlCommand cmd = new MySqlCommand(query, connection);
-                //Create a data reader and Execute the command
                 MySqlDataReader dataReader = cmd.ExecuteReader();
-
-                //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    list[0].Add(dataReader["id"] + "");
-                    list[1].Add(dataReader["path_file"] + "");
-                    list[2].Add(dataReader["is_sent"] + "");
-                    list[3].Add(dataReader["created"] + "");
+                    IDictionary<string, Object> temp = new Dictionary<string, Object>();
+                    temp.Add("finger", dataReader["finger"]);
+                    temp.Add("length", dataReader["length"]);
+                    data.Add(temp);
                 }
-
-                //close Data Reader
                 dataReader.Close();
-
-                //close Connection
                 this.CloseConnection();
-
-                //return list to be displayed
-                return list;
             }
-            else
-            {
-                return list;
-            }
+            return data;
         }
 
         //Count statement
